@@ -11,8 +11,8 @@
 # Copyright (C) 1995-2002 Russell King
 #
 
-#MKIMAGE         := $(srctree)/scripts/mkuboot.sh
-MKIMAGE          ?= $(srctree)/arch/arm/boot/mkimage
+MKIMAGE         := $(srctree)/scripts/mkuboot.sh
+#MKIMAGE          ?= $(srctree)/arch/arm/boot/mkimage
 ifneq ($(MACHINE),)
 include $(srctree)/$(MACHINE)/Makefile.boot
 endif
