@@ -1565,6 +1565,7 @@ static struct i2c_board_info  __initdata aml_dynamical_i2c_bus_info_a[] = {
 #endif
 };
 
+#ifdef CONFIG_VIDEO_AMLOGIC_CAPTURE
 int aml_camera_dynamical_probe(struct i2c_adapter *adapter)
 {
 	int count = ARRAY_SIZE(aml_dynamical_i2c_bus_info_a);
@@ -1593,6 +1594,7 @@ static int __init aml_camera_dynamical_init(void)
 	return 0;
 }
 late_initcall(aml_camera_dynamical_init);
+#endif
 
 static struct i2c_board_info __initdata aml_i2c_bus_info_ao[] = {
 #ifdef CONFIG_AW_AXP20
