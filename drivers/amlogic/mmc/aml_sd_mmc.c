@@ -959,7 +959,7 @@ static struct aml_mmc_platform_data aml_mmc_def_pdata = {
 };
 
 
-static int __init aml_sd_probe(struct platform_device *pdev)
+static int aml_sd_probe(struct platform_device *pdev)
 {
 	struct mmc_host *mmc;
 	struct aml_sd_host *host = NULL;

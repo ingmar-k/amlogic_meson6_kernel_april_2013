@@ -357,7 +357,7 @@ static void ir_hardware_init(void)
     request_fiq(INT_REMOTE, &ir_fiq_interrupt);
 }
 
-static int __init aml_ir_receiver_probe(struct platform_device *pdev)
+static int aml_ir_receiver_probe(struct platform_device *pdev)
 {
 	int r;
 	dbg("ir receiver probe\n");

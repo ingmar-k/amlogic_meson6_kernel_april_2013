@@ -21,12 +21,13 @@ static irqreturn_t root_handle_isr(int irq, void *handle)
     return IRQ_HANDLED;
 }
 
-int  fiq_bridge_pulse_trigger(bridge_item_t *c_item)
+int fiq_bridge_pulse_trigger(bridge_item_t *c_item)
 {
     c_item->active = 1;
     BRIDGE_IRQ_SET();
     return 0;
 }
+
 int  register_fiq_bridge_handle(bridge_item_t *c_item)
 {
     bridge_item_t  *pitem;
@@ -75,4 +76,3 @@ int  unregister_fiq_bridge_handle(bridge_item_t *c_item)
     }
     return 0;
 }
-

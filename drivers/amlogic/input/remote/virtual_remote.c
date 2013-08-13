@@ -102,7 +102,7 @@ static int virtual_remote_release(struct inode *inode, struct file *file)
 static const struct file_operations virtual_remote_fops = {
 	.owner = THIS_MODULE,
 	.open = virtual_remote_open,
-	.ioctl = virtual_remote_ioctl,
+	.unlocked_ioctl = virtual_remote_ioctl,
 	.release = virtual_remote_release,
 };
 
