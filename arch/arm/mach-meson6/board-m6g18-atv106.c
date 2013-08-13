@@ -1533,7 +1533,7 @@ static void vcck_pwm_init() {
     aml_write_reg32(P_PWM_MISC_REG_CD, (aml_read_reg32(P_PWM_MISC_REG_CD) & ~(0x7f << 8)) | ((1 << 15) | (PWM_PRE_DIV << 8) | (1 << 0)));
     aml_write_reg32(P_PWM_PWM_C, vcck_pwm_table[0]);
     //enable pwm_C pinmux    1<<3 pwm_D
-    pinmux_set(&vcck_pwm_set);
+    pinmux_set(&vcck_pwm_mux_set);
     //aml_write_reg32(P_PERIPHS_PIN_MUX_2, aml_read_reg32(P_PERIPHS_PIN_MUX_2) | (1 << 2));
 }
 //1.0V   <800MHz
@@ -1620,7 +1620,25 @@ static struct platform_device meson_cs_dcdc_regulator_device = {
     }
 };
 #else
-static pinmux_set_t vcck_pwm_set = {
+static void vcck_pwm_set() {
+    printk("***vcck: vcck_pwm_set");
+    //enable pwm clk & pwm output
+    aml_write_reg32(P_PWM_MISC_REG_CD, (aml_read_reg32(P_PWM_MISC_REG_CD) & ~(0x7f << 8)) | ((1 << 15) | (1 << 0)));
+    aml_write_reg32(P_PWM_PWM_C, 0x030020);
+    aml_write_reg32(P_PERIPHS_PIN_MUX_2, aml_read_reg32(P_PERIPHS_PIN_MUX_2) | (1 << 2));
+//    aml_set_reg32_bits(P_VGHL_PWM_REG0, 1, 12, 2);		//Enable
+//    aml_set_reg32_bits(P_VGHL_PWM_REG0, to, 0, 4);
+}
+
+static pinmux_item_t vcck_pwm_pins[] ={
+    {
+        .reg = PINMUX_REG(2),
+        .setmask = 1<<2,
+    },
+    PINMUX_END_ITEM
+};
+
+static pinmux_set_t vcck_pwm_mux_set = {
     .chip_select = NULL,
     .pinmux = &vcck_pwm_pins[0]
 };
