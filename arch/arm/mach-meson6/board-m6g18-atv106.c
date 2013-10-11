@@ -560,7 +560,7 @@ static struct aml_uart_platform  __initdata aml_uart_plat = {
     .pinmux_uart[4] = NULL
 };
 
-static struct platform_device aml_uart_device = {
+static struct platform_device aml_uart_device __refdata = {
     .name       = "mesonuart",
     .id     = -1,
     .num_resources  = 0,
@@ -605,31 +605,17 @@ static struct mtd_partition normal_partition_info[] = {
         .name = "cache",
         .offset = 640*SZ_1M+512*SZ_1M+40*SZ_1M,
         .size = 512*SZ_1M,
-    },
-#if 1    
+    },   
     {
     	  .name = "backup",
         .offset = 1152*SZ_1M+512*SZ_1M+40*SZ_1M,
         .size = 256*SZ_1M,
     },	
     {
-        .name = "userdata",
+        .name = "data",
         .offset = MTDPART_OFS_APPEND,
         .size = MTDPART_SIZ_FULL,
-    },
-   
-#else    
-    {
-        .name = "userdata",
-        .offset = 1152*SZ_1M+512*SZ_1M+40*SZ_1M,
-        .size = 512*SZ_1M,
-    },
-    {
-        .name = "NFTL_Part",
-        .offset = MTDPART_OFS_APPEND,
-        .size = MTDPART_SIZ_FULL,
-    },
-#endif    
+    },  
 };
 
 

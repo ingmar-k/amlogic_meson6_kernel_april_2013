@@ -17,7 +17,10 @@
 #define GC_THRESHOLD_RATIO_NUMERATOR              2
 #define GC_THRESHOLD_RATIO_DENOMINATOR            3
 
-#define MAX_CACHE_WRITE_NUM  				      16
+#define MAX_CACHE_WRITE_NUM  				      4
+
+//for req sync flag, writting into flash immediately
+#define NFTL_CACHE_FLUSH_SYNC                      1
 
 
 
